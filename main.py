@@ -16,6 +16,7 @@
 #
 import webapp2
 import ceasarporweb
+import cgi
 
 def build_page(textarea_content):
     header = "<h3>What would you like to encrypt?</h3>"
@@ -40,7 +41,8 @@ class MainHandler(webapp2.RequestHandler):
         rotation = self.request.get("rotationamount")
 
         encrypted_message = ceasarporweb.encrypt(message, int(rotation))
-        self.response.write("<p>thanks, buddy</p><br><img src='http://www.reocities.com/Hollywood/Land/4801/main/terrance11.gif'/><br><br><strong>Your secret message is:</strong>" + encrypted_message)
+        escaped_message = cgi.escape(encrypted_message)
+        self.response.write("<p>hey, buddy!</p><br><img src='http://www.reocities.com/Hollywood/Land/4801/main/terrance11.gif'/><br><br><strong>Your secret message is:</strong>" + escaped_message)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
