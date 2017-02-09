@@ -21,12 +21,13 @@ class MainHandler(webapp2.RequestHandler):
     def get(self):
         message = "hello, witches!"
         encrypted_message = ceasarporweb.encrypt(message, 13)
-
-
         text_area = "<textarea rows='4' cols='50'>" + encrypted_message + "</textarea>"
         submit = "<input type='submit'>"
-        form = "<form>" + text_area + "<br>" + submit + "</form>"
+        form = "<form method='post'>" + text_area + "<br>" + submit + "</form>"
         self.response.write(form)
+
+    def post(self):
+        self.response.write("<p>thanks, buddy</p><br><img src='http://www.reocities.com/Hollywood/Land/4801/main/terrance11.gif'/>")
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
