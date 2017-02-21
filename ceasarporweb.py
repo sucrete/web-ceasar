@@ -1,4 +1,3 @@
-
 def encrypt(text, rot):
     slate = ""
     for corrida in text:
